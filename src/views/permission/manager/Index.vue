@@ -94,7 +94,6 @@
 </template>
 
 <script>
-import { statusIconMap, listDictItemByType, getDictTextByValue } from '@/utils/common'
 import { mapActions } from 'vuex'
 import lang from '@/lang'
 import { Ellipsis } from '@/components'
@@ -306,6 +305,7 @@ export default {
 
     // 点击编辑用户
     onClickEdit(record) {
+      console.info(record)
       this.$refs.editUser.showDrawer(record)
     },
 

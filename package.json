@@ -1,6 +1,6 @@
 {
-  "name": "vue-antd-pro",
-  "version": "2.1.0",
+  "name": "portal",
+  "version": "3.0.0",
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",

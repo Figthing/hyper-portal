@@ -13,7 +13,7 @@
             hasFeedback
           >
             <a-input 
-              v-decorator="['operName', { rules: [{required: true, message: '请输入自己的姓名'}]}]" 
+              v-decorator="['operName', { rules: [{message: '请输入自己的姓名'}]}]" 
               placeholder="请输入自己的姓名" 
             />
           </a-form-item>
@@ -26,7 +26,8 @@
               name="radioGroup"
               v-decorator="['sex']" 
             >
-              <a-radio :key="item.itemValue" v-for="item in dict.sexList" :value="item.itemValue">{{ item.itemText }}</a-radio>
+              <a-radio key="0" value="0">女</a-radio>
+              <a-radio key="1" value="1">男</a-radio>
             </a-radio-group>
           </a-form-item>
 
@@ -37,7 +38,7 @@
               style="width: 100%"
               format="YYYY-MM-DD"
               placeholder="请选择出生年月"
-              v-decorator="['operBirthday']"
+              v-decorator="['birthday']"
             />
           </a-form-item>
 
@@ -98,7 +99,6 @@ import { mapState, mapActions } from 'vuex'
 import { validPhone, validEmail } from '@/utils/validate'
 import lang from '@/lang'
 import AvatarModal from './AvatarModal'
-import { listDictItemByType } from '@/utils/common'
 
 export default {
   computed: {
@@ -111,23 +111,13 @@ export default {
     return {
       form: this.$form.createForm(this),
 
-      // 字典
-      dict: {
-        sexList: []
-      },
-
       state: {
         saveBtn: false
       }
     }
   },
   mounted () {
-
-    listDictItemByType('sys_oper_sex', (data) => this.dict.sexList = data)
-
-    this.$nextTick(() => {
-        this.findUserInfo()
-    })
+    this.findUserInfo()
   },
   methods: {
     ...mapActions('user', {'GetUserInfo': 'GetInfo', 'UpdateUserInfo': 'UpdateUserInfo'}),
@@ -166,9 +156,9 @@ export default {
           return
         }
 
-        const birthday = fieldsValue['operBirthday'] == undefined ? '' : fieldsValue['operBirthday'].format('YYYY-MM-DD')
+        const birthday = fieldsValue['birthday'] == undefined ? '' : fieldsValue['birthday'].format('YYYY-MM-DD')
         const name = fieldsValue['operName']
-        delete fieldsValue['operBirthday']
+        delete fieldsValue['birthday']
         delete fieldsValue['operName']
 
         const values = {
@@ -210,7 +200,7 @@ export default {
 
       if (this.userInfo.birthday !== '') {
         this.form.setFieldsValue({
-          operBirthday: moment(this.userInfo.birthday, 'YYYY-MM-DD HH:mm:ss')
+          birthday: moment(this.userInfo.birthday, 'YYYY-MM-DD HH:mm:ss')
         })
       }
     }

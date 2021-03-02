@@ -7,7 +7,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store/'
 import { VueAxios } from './utils/request'
-import { Tree } from 'ant-design-vue'
+import { Tree,TreeSelect } from 'ant-design-vue'
 
 // mock
 // WARNING: `mockjs` NOT SUPPORT `IE` PLEASE DO NOT USE IN `production` ENV.
@@ -20,16 +20,13 @@ import './utils/filter' // global filter
 import './components/global.less'
 
 import VueI18n from 'vue-i18n'
-import { getConfigKey } from './utils/common'
-
-// 全局方法挂载
-Vue.prototype.getConfigKey = getConfigKey
 
 Vue.config.productionTip = false
 
 // mount axios Vue.$http and this.$http
 Vue.use(VueAxios)
 Vue.use(Tree)
+Vue.use(TreeSelect)
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({

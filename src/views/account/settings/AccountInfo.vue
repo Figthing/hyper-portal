@@ -33,10 +33,10 @@
 
 <script>
 import _ from 'lodash'
-import { statusIconMap, listDictItemByType, getDictTextByValue } from '@/utils/common'
-import { mapState, mapActions } from 'vuex'
+import { mapState } from 'vuex'
 
-var main
+var stateColor = ['processing', 'default', 'warning']
+var stateText = ['正常', '停用', '锁定']
 
 export default {
   computed: {
@@ -49,27 +49,16 @@ export default {
         { title: '系统登录账号', key: 'operAccount' },
         { title: '系统登录密码', key: 'pass' , value: '*******', actions: { title: '修改', callback: () => { this.$router.push({ name: 'accountSecuritySettings' }) } } },
         { title: '账号状态', key: 'status' },
-        { title: '最后登录IP', key: 'lastLoginIp' },
-        { title: '最后登录时间', key: 'lastLoginTime' },
         { title: '创建时间', key: 'createTime' },
-      ],
-      dict: {
-        statusList: ''
-      }
+      ]
     }
-  },
-  beforeCreate: function () {
-    main = this
-  },
-  mounted() {
-    listDictItemByType('sys_oper_status', (data) => this.dict.statusList = data)
   },
   filters: {
     statusIconFilter(val) {
-      return `${statusIconMap[val]}`
+      return `${stateColor[val]}`
     },
     statusTextFilter(val) {
-      return `${getDictTextByValue(main.dict.statusList, val)}`
+      return `${stateText[val]}`
     }
   }
 }

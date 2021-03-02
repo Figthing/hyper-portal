@@ -7,9 +7,9 @@ export function login (parameter) {
     url: api.login,
     method: 'post',
     data: parameter,
-    auth: {
-      username: 'web',
-      password: 'neusoft_base_project'
+    headers: {
+      'Authorization': 'Basic aHlwZXI6aHlwZXJfYmFzZV9wcm9qZWN0',
+      'Content-Type': 'application/json'
     }
   })
 }

@@ -10,6 +10,8 @@ import permission from './modules/permission'
 import config from './modules/config'
 import role from './modules/role'
 import manager from './modules/manager'
+import dept from './modules/dept'
+import job from './modules/job'
 import dict from './modules/dict'
 import dictItem from './modules/dictItem'
 import syslog from './modules/syslog'
@@ -27,6 +29,8 @@ export default new Vuex.Store({
     config,
     role,
     manager,
+    dept,
+    job,
     dict,
     dictItem,
     syslog

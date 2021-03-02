@@ -168,7 +168,6 @@ import moment from 'moment'
 import { pick, partition } from 'lodash'
 import { mapActions } from 'vuex'
 import { validPhone, validEmail } from '@/utils/validate'
-import { listDictItemByType } from '@/utils/common'
 import lang from '@/lang'
 
 export default {
@@ -236,6 +235,7 @@ export default {
       ListRoles({
         pageSize: 100
       }).then(data => {
+        console.info(data.list)
         this.$data.roleData = data.list
       })
 

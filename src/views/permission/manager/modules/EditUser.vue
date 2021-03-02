@@ -139,7 +139,6 @@ import moment from 'moment'
 import { pick } from 'lodash'
 import { mapActions } from 'vuex'
 import { validPhone, validEmail } from '@/utils/validate'
-import { listDictItemByType } from '@/utils/common'
 import lang from '@/lang'
 
 export default {

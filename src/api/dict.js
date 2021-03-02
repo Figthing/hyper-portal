@@ -31,7 +31,7 @@ export function updateDictById(id, data) {
 // 根据IDS删除字典
 export function deleteByIds(data) {
   return axios({
-    url: api.deleteByIds,
+    url: api.deleteDictByIds,
     method: 'delete',
     data: data
   })

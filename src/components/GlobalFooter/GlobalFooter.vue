@@ -1,22 +1,16 @@
 <template>
   <div class="footer">
     <div class="copyright">
-      Copyright
-      <a-icon type="copyright" /> {{ product('COPYRIGHT') }}
+      {{ website.copyright }}   
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  name: 'GlobalFooter',
   computed: {
-    product() {
-      return (key) => this.getConfigKey(key)
-    }
-  },
-  data () {
-    return {}
+    ...mapGetters(['website'])
   }
 }
 </script>

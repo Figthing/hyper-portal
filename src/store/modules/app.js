@@ -1,3 +1,4 @@
+import website from '@/const/website'
 import Vue from 'vue'
 import {
   SIDEBAR_TYPE,
@@ -24,7 +25,8 @@ const app = {
     autoHideHeader: false,
     color: null,
     weak: false,
-    multiTab: true
+    multiTab: true,
+    website: website
   },
   mutations: {
     SET_SIDEBAR_TYPE: (state, type) => {

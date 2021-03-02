@@ -17,7 +17,7 @@
           hasFeedback
         >
           <a-input 
-            v-decorator="['name', {rules: [{required: true, min: 5, message: '请填写至少5个字符的角色名称'}]}]" 
+            v-decorator="['name', {rules: [{required: true, min: 4, message: '请填写至少4个字符的角色名称'}]}]" 
             placeholder="请输入角色名称" 
           />
         </a-form-item>

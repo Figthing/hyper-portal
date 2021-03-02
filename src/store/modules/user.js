@@ -8,6 +8,7 @@ const user = {
 
   state: {
     token: '',
+    id: '',
     name: '',
     welcome: '',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/kZzEzemZyKLKFsojXItE.png',
@@ -19,7 +20,7 @@ const user = {
   mutations: {
     SET_TOKEN: (state, token) => {
       state.token = token
-    },
+    },  
     SET_NAME: (state, { name, welcome }) => {
       state.name = name
       state.welcome = welcome
@@ -52,8 +53,8 @@ const user = {
       return new Promise((resolve, reject) => {
         login(userInfo).then(res => {
           const result = res.data
-          Vue.ls.set(ACCESS_TOKEN, result.AccessToken, 7 * 24 * 60 * 60 * 1000)
-          commit('SET_TOKEN', result.AccessToken)
+          Vue.ls.set(ACCESS_TOKEN, result.access_token, 7 * 24 * 60 * 60 * 1000)
+          commit('SET_TOKEN', result.access_token)
           resolve()
         }).catch(error => {
           reject(error)
@@ -76,9 +77,8 @@ const user = {
       })
     },
 
-    // 获取用户信息
+    // 获取当前登录用户信息
     GetInfo ({ commit }) {
-
       return new Promise((resolve, reject) => {
         getInfo().then(res => {
 
@@ -91,7 +91,7 @@ const user = {
 
           commit('SET_ROLES', ['suppper'])
           commit('SET_INFO', data)
-          commit('SET_NAME', { name: data.operName, welcome: welcome() })
+          commit('SET_NAME', { name: data.operAccount, welcome: welcome() })
           resolve(data)
         }).catch((err) => {
           reject(err)
@@ -99,7 +99,7 @@ const user = {
       })
     },
 
-    // 获取用户权限
+    // 获取当前登录用户权限
     GetUserPermission() {
       return new Promise((resolve, reject) => {
         getCurrentUserPermission().then(res => {
@@ -117,7 +117,7 @@ const user = {
       })
     },
 
-    // 更新用户资料
+    // 更新当前登录用户资料
     UpdateUserInfo({ commit }, data) {
       return new Promise((resolve, reject) => {
         updateInfo(data).then(res => {

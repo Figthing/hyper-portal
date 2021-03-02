@@ -69,7 +69,7 @@
 
 <script>
 import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   components: {
@@ -126,7 +126,7 @@ export default {
         if (!err) {
           console.log('login form', values)
           const loginParams = { }
-          loginParams.account = values.username
+          loginParams.username = values.username
           loginParams.password = values.password
           Login(loginParams)
             .then((res) => this.loginSuccess())

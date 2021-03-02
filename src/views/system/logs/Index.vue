@@ -89,7 +89,6 @@
 </template>
 
 <script>
-import { statusIconMap, listDictItemByType, getDictTextByValue } from '@/utils/common'
 import { mapActions } from 'vuex'
 import lang from '@/lang'
 import { Ellipsis } from '@/components'

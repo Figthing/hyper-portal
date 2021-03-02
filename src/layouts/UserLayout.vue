@@ -5,11 +5,11 @@
         <div class="header">
           <a href="/">
             <img src="~@/assets/logo.svg" class="logo" alt="logo">
-            <span class="title">{{ product('PRODUCT_NAME') }}</span>
+            <span class="title">{{ website.title }}</span>
           </a>
         </div>
         <div class="desc">
-          {{ product('PRODUCT_DESC') }} - {{ product('PRODUCT_VERSION') }}
+          {{ website.description }}
         </div>
       </div>
 
@@ -17,7 +17,7 @@
 
       <div class="footer">
         <div class="copyright">
-          Copyright &copy; {{ product('COPYRIGHT') }}
+          {{ website.copyright }}          
         </div>
       </div>
     </div>
@@ -26,20 +26,18 @@
 
 <script>
 import RouteView from './RouteView'
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import { mixinDevice } from '@/utils/mixin'
 
 export default {
   name: 'UserLayout',
   components: { RouteView },
   mixins: [mixinDevice],
-  computed: {
-    product() {
-      return (key) => this.getConfigKey(key)
-    }
-  },
   data () {
     return {}
+  },
+  computed: {
+    ...mapGetters(['website'])
   },
   mounted () {
     document.body.classList.add('userLayout')

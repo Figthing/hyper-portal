@@ -36,18 +36,18 @@ const err = (error) => {
     }
 
     if (error.response.status === 401 && !(data.result && data.result.isLogin)) {
-      if (dataCode === '201') {
+      if (lang.t(dataCode)) {
         notification.error({
-          message: '系统提示',
+          message: 'Unauthorized',
           description: lang.t(dataCode)
         })
-        return Promise.reject(error)
+      } else {
+        notification.error({
+          message: 'Unauthorized',
+          description: '认证失败，账号密码错误！'
+        })
       }
-
-      notification.error({
-        message: 'Unauthorized',
-        description: 'Authorization verification failed'
-      })
+      
       if (token) {
         store.dispatch('Logout').then(() => {
           setTimeout(() => {
